@@ -70,4 +70,15 @@ node {
             
             
         }
+     stage('Build') {
+    
+
+         sh 'terraform init'
+         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'SanyamAWS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        sh 'terraform apply -auto-approve'
+  
+
+      }
+   } 
+    
     }

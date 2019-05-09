@@ -79,6 +79,7 @@ node {
   
 
       }
+     }
     
     /*stage('connection') { 
  	 
@@ -87,9 +88,8 @@ node {
  	sh 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com'
  	sh 'ssh ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com pwd'
  	sh 'ssh ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com sudo docker pull sanyambatra13/jenkins-webapp:ver1' 
- 	sh 'ssh ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com sudo docker run -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1''
+ 	sh 'ssh ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com sudo docker run -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1'
  	} 
- 	 
  	}*/ 
 
     }

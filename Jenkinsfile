@@ -66,7 +66,7 @@ node {
             
 }
          }
-     stage('Terraformm') {
+     stage('Terraform') {
     
 
          sh 'terraform init'

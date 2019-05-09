@@ -20,9 +20,9 @@ node {
         buildInfo.env.capture = true
     }
 
-    stage ('Exec Maven') {
+    /*stage ('Exec Maven') {
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
-    }
+    }*/
 
     stage ('Publish build info') {
         server.publishBuildInfo buildInfo
@@ -62,7 +62,7 @@ node {
      sh "sudo docker login -u $DockerUser -p $DockerPass"
             sh 'sudo docker tag jenkins-webapp:ver1 sanyambatra13/jenkins-webapp:ver1'
             sh ' sudo docker push sanyambatra13/jenkins-webapp:ver1'
-            sh 'sudo docker run sanyambatra13/jenkins-webapp:ver1'
+            
 }
             
             
@@ -70,7 +70,7 @@ node {
             
             
         }
-     stage('Build') {
+     stage('Terraform') {
     
 
          sh 'terraform init'
@@ -80,5 +80,16 @@ node {
 
       }
    } 
-    
+    /*stage('connection') { 
+ 	 
+ 	sshagent(['SanyamSec']) {
+ 	 
+ 	sh 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com'
+ 	sh 'ssh ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com pwd'
+ 	sh 'ssh ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com sudo docker pull sanyambatra13/jenkins-webapp:ver1' 
+ 	sh 'ssh ubuntu@ec2-18-208-252-33.compute-1.amazonaws.com sudo docker run -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1''
+ 	} 
+ 	 
+ 	}*/ 
+
     }

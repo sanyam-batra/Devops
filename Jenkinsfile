@@ -22,7 +22,7 @@ node {
 
     /*stage ('Exec Maven') {
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
-    }*/
+    }
 
     stage ('Publish build info') {
         server.publishBuildInfo buildInfo
@@ -33,7 +33,7 @@ node {
       // requires SonarQube Scanner for Maven 3.2+
       rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar', buildInfo: buildInfo
     }
-     } 
+     } */
   
   stage('Build Docker image') {
         /* This builds the actual image; synonymous to
@@ -54,7 +54,8 @@ node {
             sudo app.push("${env.BUILD_NUMBER}")
             sudo app.push("latest")*/
             
-            withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")]) {
+            withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
+                                 {
     // some block
     
     
@@ -64,12 +65,7 @@ node {
             sh ' sudo docker push sanyambatra13/jenkins-webapp:ver1'
             
 }
-            
-            
-            
-            
-            
-        }
+         }
      stage('Terraform') {
     
 
@@ -80,6 +76,7 @@ node {
 
       }
      }
+}
     
     /*stage('connection') { 
  	 
@@ -92,4 +89,4 @@ node {
  	} 
  	}*/ 
 
-    }
+    

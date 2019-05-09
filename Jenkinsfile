@@ -81,7 +81,7 @@ node {
     
     stage('connection') {   
 	               
-	        sshagent(['SanyamSec']) {
+	        sshagent(['Sanyamsec']) {
 	    
 	             sh 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-34-238-156-135.compute-1.amazonaws.com'
 

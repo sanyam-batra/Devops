@@ -106,7 +106,7 @@ node {
 	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com pwd'
 			
 			
-		 statusPort(8888);
+		 statusPort(8888)
    
 
 		    

@@ -88,7 +88,7 @@ node {
     
     stage('connection') {   
 	               
-	        stage('connection') {   
+	          
 	               
 	        sshagent(['Sanyamsec']) {
 	    
@@ -104,7 +104,7 @@ node {
     
     
 }
-}
+
     
  
 

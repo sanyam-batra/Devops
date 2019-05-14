@@ -1,4 +1,22 @@
+def statusPort(int p){
+        sh '''
+        echo $p
+        ContainerID=$(sudo docker ps | grep ''' +p+ ''' | cut -d " " -f 1)
+        echo $ContainerID
+        if [  $ContainerID ]
+        then
+        sudo docker rm -f $ContainerID
+        fi
+        '''
+    }  
+
 node {
+	
+	
+    
+
+ 
+
     
     def server = Artifactory.server 'artifactory'
     def rtMaven = Artifactory.newMavenBuild()
@@ -88,12 +106,12 @@ node {
 	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com pwd'
 			
 			
-		 
+		 statusPort(8888);
    
 
 		    
-	            /*sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com echo "if [  "$(docker ps -q -f name=sanyam)" ]; then docker kill sanyam docker rm sanyam fi docker pull sanyambatra13/jenkins-webapp:ver1 docker run --name sanyam -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1">>dockerexec.sh'*/
-	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com ./dockerexec.sh'
+	            /*sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com echo "if [  "$(docker ps -q -f name=sanyam)" ]; then docker kill sanyam docker rm sanyam fi docker pull sanyambatra13/jenkins-webapp:ver1 docker run --name sanyam -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1">>dockerexec.sh'
+	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com ./dockerexec.sh'*/
 		 	
 		    /*sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker ps -f name=sanyam -q | xargs --no-run-if-empty docker kill sanyam'
 		    sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker container ls -a -fname=sanyam -q | xargs -r docker rm sanyam'*/

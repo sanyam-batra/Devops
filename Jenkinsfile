@@ -86,11 +86,11 @@ node {
 	             sh 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com'
                      
 	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com if [  "$(docker ps -q -f name=sanyam)" ]; then
-        docker kill sanyam
-        docker rm sanyam
-fi
-docker pull sanyambatra13/jenkins-webapp:ver1
-docker run --name sanyam -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1
+        > docker kill sanyam
+       > docker rm sanyam
+>fi
+>docker pull sanyambatra13/jenkins-webapp:ver1
+>docker run --name sanyam -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1
 
 '
 		    

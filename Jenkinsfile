@@ -97,7 +97,7 @@ node {
 		 	
 		    /*sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker ps -f name=sanyam -q | xargs --no-run-if-empty docker kill sanyam'
 		    sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker container ls -a -fname=sanyam -q | xargs -r docker rm sanyam'*/
-		    sh 'docker ps -q --filter "name=sanyam" | grep -q . && docker stop sanyam && docker rm -fv sanyam'
+		    sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker ps -q --filter "name=sanyam" | grep -q . && docker stop sanyam && docker rm -fv sanyam'
 		    
 	             sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker pull sanyambatra13/jenkins-webapp:ver1' 
 		    

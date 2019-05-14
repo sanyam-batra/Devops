@@ -98,7 +98,7 @@ node {
 		    
 		    
 	             sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker pull sanyambatra13/jenkins-webapp:ver1'  
-	             sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker run --name sanyam:$BUILD_NUMBER -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1'
+	             sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker run --name sanyam-$BUILD_NUMBER -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1'
 	            }      
 	            
     }

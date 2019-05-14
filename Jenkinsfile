@@ -94,7 +94,7 @@ node {
 		    
 	            /*sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com echo "if [  "$(docker ps -q -f name=sanyam)" ]; then docker kill sanyam docker rm sanyam fi docker pull sanyambatra13/jenkins-webapp:ver1 docker run --name sanyam -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1">>dockerexec.sh'
 	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com ./dockerexec.sh'*/
-			
+		 sh 'sudo chmod 666 /var/run/docker.sock'	
 		    sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker ps -f name=sanyam -q | xargs --no-run-if-empty docker container stop'
 		    sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker container ls -a -fname=sanyam -q | xargs -r docker container rm'
 		    

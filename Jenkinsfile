@@ -1,14 +1,3 @@
-def statusPort(int p){
-        sh '''
-        echo $p
-        ContainerID=$(sudo docker ps | grep ''' +p+ ''' | cut -d " " -f 1)
-        echo $ContainerID
-        if [  $ContainerID ]
-        then
-        sudo docker rm -f $ContainerID
-        fi
-        '''
-    }  
 
 node {
 	
@@ -114,6 +103,7 @@ node {
     
     
     
+}
 }
     
  

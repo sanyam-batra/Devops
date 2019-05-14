@@ -27,7 +27,7 @@ node {
         buildInfo.env.capture = true
     }
 
-    /*stage ('Exec Maven') {
+    stage ('Exec Maven') {
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
     }
 
@@ -40,7 +40,7 @@ node {
       // requires SonarQube Scanner for Maven 3.2+
       rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar', buildInfo: buildInfo
     }
-     } */
+     } 
   
   stage('Build Docker image') {
         /* This builds the actual image; synonymous to

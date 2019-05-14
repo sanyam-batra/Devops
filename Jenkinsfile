@@ -86,11 +86,21 @@ node {
 	             sh 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com'
                      
 	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com pwd'
-
+			
+			
+		 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
+                                 {
+    // some block
+    
+    
+    
+     sh "sudo docker login -u $DockerUser -p $DockerPass"
+				 }
+   
 
 		    
-	            /*sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com echo "if [  "$(docker ps -q -f name=sanyam)" ]; then docker kill sanyam docker rm sanyam fi docker pull sanyambatra13/jenkins-webapp:ver1 docker run --name sanyam -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1">>dockerexec.sh'
-	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com ./dockerexec.sh'*/	
+	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com echo "if [  "$(docker ps -q -f name=sanyam)" ]; then docker kill sanyam docker rm sanyam fi docker pull sanyambatra13/jenkins-webapp:ver1 docker run --name sanyam -d -p 8888:8888 sanyambatra13/jenkins-webapp:ver1">>dockerexec.sh'
+	            sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com ./dockerexec.sh'
 		    
 		    
 	             /*sh 'ssh ubuntu@ec2-3-86-104-43.compute-1.amazonaws.com sudo docker pull sanyambatra13/jenkins-webapp:ver1'  

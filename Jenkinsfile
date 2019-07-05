@@ -23,8 +23,10 @@ node {
         rtMaven.tool = 'mavenhome' // Tool name from Jenkins configuration
         rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
         rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server: server
+	rtMaven.deployer.deployArtifacts = false
         buildInfo = Artifactory.newBuildInfo()
         buildInfo.env.capture = true
+	
     }
 
     stage ('Exec Maven') {

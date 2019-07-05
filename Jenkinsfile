@@ -31,9 +31,9 @@ node {
         rtMaven.run pom: 'pom.xml', goals: '-U clean install', buildInfo: buildInfo
     }
 
-    /*stage ('Publish build info') {
+    stage ('Publish build info') {
         server.publishBuildInfo buildInfo
-    }*/
+    }
     
    
 }

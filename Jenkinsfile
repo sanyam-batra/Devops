@@ -12,8 +12,8 @@ node {
     
     def buildInfo
     def mvnHome
-    jdk = tool name: 'JAVA8'
-    env.JAVA_HOME = "${jdk}"
+    /*jdk = tool name: 'JAVA8'
+    env.JAVA_HOME = "${jdk}"*/
     
     stage ('checkout scm') {
     checkout scm

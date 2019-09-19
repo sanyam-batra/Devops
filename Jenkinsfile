@@ -37,6 +37,9 @@ node {
         server.publishBuildInfo buildInfo
     }
     
+	stage ('Publish artifacts') {
+		rtMaven.deployer.deployArtifacts buildInfo
+	}
    
 }
 

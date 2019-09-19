@@ -30,12 +30,12 @@ node {
     }
 
     stage ('Exec Maven') {
-        rtMaven.run pom: 'pom.xml', goals: '-U clean install'
+        rtMaven.run pom: 'pom.xml', goals: '-U clean install', buildinfo:buildinfo
     }
 
-    stage ('Publish build info') {
+    /*stage ('Publish build info') {
         server.publishBuildInfo buildInfo
-    }
+    }*/
     
    
 }

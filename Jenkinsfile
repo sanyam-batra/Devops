@@ -21,7 +21,7 @@ node {
     stage ('Artifactory configuration') {
         mvnHome = tool 'mavenhome'
         rtMaven.tool = 'mavenhome' // Tool name from Jenkins configuration
-        rtMaven.deployer releaseRepo: ' example-repo-local', snapshotRepo: ' example-repo-local', server: server
+        //rtMaven.deployer releaseRepo: ' example-repo-local', snapshotRepo: ' example-repo-local', server: server
         rtMaven.resolver releaseRepo: ' example-repo-local', snapshotRepo: ' example-repo-local', server: server
 	
         buildInfo = Artifactory.newBuildInfo()
@@ -30,7 +30,7 @@ node {
     }
 
     stage ('Exec Maven') {
-        rtMaven.run pom: 'pom.xml', goals: '-U clean install', buildInfo: buildInfo
+        rtMaven.run pom: 'pom.xml', goals: '-U clean install'
     }
 
     stage ('Publish build info') {

@@ -26,7 +26,7 @@ pipeline {
          sh 'sudo docker build -t demo-webapp:ver1 .'
      }
 	    }
-     stage('Push image') 
+	    stage('Push image') {
 	    steps {
                              
             

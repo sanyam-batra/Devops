@@ -16,14 +16,14 @@ pipeline {
 		    checkout scm
 		    }
 	    }
-        stage ('Build Stage') {
+        /*stage ('Build Stage') {
 
             steps {
                 
                     sh 'mvn clean install'
                 
             }
-        }
+        }*/
 	    stage('Building image') {
       steps{
         script {

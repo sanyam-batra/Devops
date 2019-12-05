@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	tools {
+		maven 'maven_tool'
+	}
 
     stages {
 	    stage('checkout scm') {
@@ -11,9 +14,9 @@ pipeline {
         stage ('Build Stage') {
 
             steps {
-                withMaven(maven : 'maven_tool') {
-                    sh 'mvn clean compile'
-                }
+                
+                    sh 'mvn clean install'
+                
             }
         }
     }

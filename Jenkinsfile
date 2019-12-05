@@ -1,5 +1,6 @@
 pipeline {
     agent any
+	def dockerHome = tool 'docker_tool'
 	tools {
 		maven 'maven_tool'
 		
@@ -26,7 +27,7 @@ pipeline {
             }
         }*/
 	    stage('Building image') {
-		    def dockerHome = tool 'docker_tool'
+		    
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -34,7 +35,7 @@ pipeline {
       }
     }
 	        stage('Deploy Image') {
-			def dockerHome = tool 'docker_tool'
+			
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {

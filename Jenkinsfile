@@ -5,7 +5,6 @@ pipeline {
 		maven 'maven_tool'
 		
 	}
-}
 
     stages {
 	    stage('checkout scm') {
@@ -29,7 +28,7 @@ pipeline {
      stage('Push image') 
                              {
             
-            withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
+            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
                                  {
     
     

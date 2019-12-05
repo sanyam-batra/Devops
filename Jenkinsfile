@@ -23,7 +23,7 @@ pipeline {
         }*/
 	    stage('Build Docker image') {
 		    steps{
-         sh 'sudo docker build -t demo-webapp:ver1 .'
+         sh 'docker build -t demo-webapp:ver1 .'
      }
 	    }
 	    stage('Push image') {
@@ -35,9 +35,9 @@ pipeline {
     
     
     
-     sh "sudo docker login -u $DockerUser -p $DockerPass"
-            sh 'sudo docker tag demo-webapp:ver1 sanyambatra/demo-webapp:ver1'
-            sh ' sudo docker push sanyambatra/demo-webapp:ver1'
+     sh "docker login -u $DockerUser -p $DockerPass"
+            sh 'docker tag demo-webapp:ver1 sanyambatra/demo-webapp:ver1'
+            sh 'docker push sanyambatra/demo-webapp:ver1'
             
 				 }
 				 }

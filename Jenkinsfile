@@ -5,6 +5,12 @@ pipeline {
 		maven 'maven_tool'
 		
 	}
+	environment {
+    	registry = "sanyambatra/demo-pipeline"
+    	registryCredential = 'docker-hub'
+	dockerImage = ''
+		
+  }
 
     stages {
 	    stage('checkout scm') {
@@ -21,27 +27,22 @@ pipeline {
                 
             }
         }
-	    /*stage('Build Docker image') {
+	    stage('Build Docker image') {
 		    steps{
-         sh 'docker build -t demo-webapp:ver1 .'
+		    script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
      }
 	    }
 	    stage('Push image') {
 	    steps {
-                             
-            
-            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
-                                 {
-    
-    
-    
-     sh "docker login -u $DockerUser -p $DockerPass"
-            sh 'docker tag demo-webapp:ver1 sanyambatra/demo-webapp:ver1'
-            sh 'docker push sanyambatra/demo-webapp:ver1'
-            
+                          script {
+      docker.withRegistry( '', registryCredential ) {
+        dockerImage.push()
+      }   
+ 
 				 }
-				 }
-         }*/
+         }
 
 
 	 

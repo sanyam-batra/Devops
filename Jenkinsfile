@@ -22,10 +22,12 @@ pipeline {
             }
         }*/
 	    stage('Build Docker image') {
+		    steps{
          sh 'sudo docker build -t demo-webapp:ver1 .'
      }
-
+	    }
      stage('Push image') 
+	    steps {
                              {
             
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
@@ -37,7 +39,8 @@ pipeline {
             sh 'sudo docker tag demo-webapp:ver1 sanyambatra/demo-webapp:ver1'
             sh ' sudo docker push sanyambatra/demo-webapp:ver1'
             
-}
+				 }
+				 }
          }
 
 

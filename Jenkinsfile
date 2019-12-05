@@ -4,6 +4,10 @@ pipeline {
 		maven 'maven_tool'
 		docker 'docker_tool'
 	}
+	environment {
+    registry = "sanyambatra/demo-pipeline"
+    registryCredential = ‘docker-hub’
+}
 
     stages {
 	    stage('checkout scm') {
@@ -20,22 +24,23 @@ pipeline {
                 
             }
         }
-	    stage('Build and push image') {
-		    steps {
-			    sh 'sudo docker build -t demo-webapp:ver1 .'
-			    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
-                                 {
-    
-    
-    
-    
-     sh "sudo docker login -u $DockerUser -p $DockerPass"
-            sh 'sudo docker tag demo-webapp:ver1 sanyambatra13/demo-webapp:ver1'
-            sh ' sudo docker push sanyambatra13/demo-webapp:ver1'
-            
-}
-		    }
-	    }
+	    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+	        stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+
     }
 }
 

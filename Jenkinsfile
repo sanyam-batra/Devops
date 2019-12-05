@@ -2,11 +2,11 @@ pipeline {
     agent any
 	tools {
 		maven 'maven_tool'
-		docker 'docker_tool'
+		
 	}
 	environment {
     registry = "sanyambatra/demo-pipeline"
-    registryCredential = ‘docker-hub’
+    registryCredential = ‘dockerhub’
 }
 
     stages {

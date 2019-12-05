@@ -13,15 +13,15 @@ pipeline {
 		    checkout scm
 		    }
 	    }
-        /*stage ('Build Stage') {
+        stage ('Build Stage') {
 
             steps {
                 
                     sh 'mvn clean install'
                 
             }
-        }*/
-	    stage('Build Docker image') {
+        }
+	    /*stage('Build Docker image') {
 		    steps{
          sh 'docker build -t demo-webapp:ver1 .'
      }
@@ -41,7 +41,7 @@ pipeline {
             
 				 }
 				 }
-         }
+         }*/
 
 
 	 

@@ -1,14 +1,10 @@
 pipeline {
     agent any
-	def dockerHome = tool 'docker_tool'
+	
 	tools {
 		maven 'maven_tool'
 		
 	}
-	environment {
-    registry = "sanyambatra/demo-pipeline"
-    registryCredential = 'dockerhub'
-    dockerimage= ''
 }
 
     stages {
@@ -26,26 +22,28 @@ pipeline {
                 
             }
         }*/
-	    stage('Building image') {
-		    
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    }
-	        stage('Deploy Image') {
-			
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
+	    stage('Build Docker image') {
+         sh 'sudo docker build -t demo-webapp:ver1 .'
+     }
 
-    }
+     stage('Push image') 
+                             {
+            
+            withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: "DockerPass", usernameVariable: "DockerUser")])
+                                 {
+    
+    
+    
+     sh "sudo docker login -u $DockerUser -p $DockerPass"
+            sh 'sudo docker tag demo-webapp:ver1 sanyambatra/demo-webapp:ver1'
+            sh ' sudo docker push sanyambatra/demo-webapp:ver1'
+            
+}
+         }
+
+
+	 
+}
 }
 
     

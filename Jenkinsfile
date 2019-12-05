@@ -6,7 +6,7 @@ pipeline {
 	}
 	environment {
     registry = "sanyambatra/demo-pipeline"
-    registryCredential = ‘dockerhub’
+    registryCredential = 'dockerhub'
 }
 
     stages {

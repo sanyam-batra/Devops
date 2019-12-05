@@ -4,10 +4,10 @@ pipeline {
 		maven 'maven_tool'
 		
 	}
-	tool name: 'docker_tool', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
 	environment {
     registry = "sanyambatra/demo-pipeline"
     registryCredential = 'dockerhub'
+    dockerimage= ''
 }
 
     stages {
